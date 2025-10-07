@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { createRiggedFish, updateRiggedFish } from './fishRig.js';
+import { createVoxel } from '../utils/voxel.js';
 
 const fishMat = new THREE.MeshLambertMaterial({ color: 0xc0c0c0 });
 const fishTailMat = new THREE.MeshLambertMaterial({ color: 0xff4500 });
@@ -12,13 +13,6 @@ const pupilMat = new THREE.MeshLambertMaterial({ color: 0x000000 });
 // Vitiligo fish materials
 const vitiligoBodyMat = new THREE.MeshLambertMaterial({ color: 0x555555 });
 const vitiligoPatchMat = new THREE.MeshLambertMaterial({ color: 0xf0f0f0 });
-
-function createVoxel(x, y, z, w, h, d, mat) {
-    const geo = new THREE.BoxGeometry(w, h, d);
-    const mesh = new THREE.Mesh(geo, mat);
-    mesh.position.set(x, y, z);
-    return mesh;
-}
 
 export function createFish(scene, score = 0, type = 'classic', opts = {}, addToScene = true) {
     const g = createRiggedFish({ scene, score, type, opts, addToScene });

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { createVoxel } from '../utils/voxel.js';
 
 const brownMat = new THREE.MeshLambertMaterial({ color: 0x8d5524 });
 const darkBrownMat = new THREE.MeshLambertMaterial({ color: 0x4a2d1e });
@@ -18,13 +19,6 @@ const BEAR_MOVE_SPEED = 0.08;
 export const BEAR_Z_MIN = -9.0, BEAR_Z_MAX = 2.1;
 const BEAR_Z_SPEED = 0.012;
 const BEAR_WOBBLE_AMOUNT = 0.2;
-
-function createVoxel(x, y, z, w, h, d, mat) {
-    const geo = new THREE.BoxGeometry(w, h, d);
-    const mesh = new THREE.Mesh(geo, mat);
-    mesh.position.set(x, y, z);
-    return mesh;
-}
 
 export function createBear(type = 'splashy', cosmeticId = null) {
     const group = new THREE.Group();

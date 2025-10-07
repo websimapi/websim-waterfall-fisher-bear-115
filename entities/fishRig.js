@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { createVoxel } from '../utils/voxel.js';
 
 const fishMat = new THREE.MeshLambertMaterial({ color: 0xc0c0c0 });
 const fishTailMat = new THREE.MeshLambertMaterial({ color: 0xff4500 });
@@ -13,14 +14,6 @@ const goldenBodyMat = new THREE.MeshLambertMaterial({ color: 0xdaa520 });
 
 /* apply polygon offset to reduce z-fighting on overlapping shells */
 [fishTailMat, finMat, bellyMat].forEach(m => { m.polygonOffset = true; m.polygonOffsetFactor = 1; m.polygonOffsetUnits = 1; });
-
-function createVoxel(x, y, z, w, h, d, mat) {
-  const geo = new THREE.BoxGeometry(w, h, d);
-  const mesh = new THREE.Mesh(geo, mat);
-  mesh.position.set(x, y, z);
-  mesh.frustumCulled = false;
-  return mesh;
-}
 
 export function createRiggedFish({ scene, score = 0, type = 'classic', opts = {}, addToScene = true }) {
   const group = new THREE.Group();
